@@ -27,13 +27,7 @@ export class ErrorInterceptor implements HttpInterceptor {
   ): Observable<HttpEvent<any>> {
     return next.handle(req).pipe(
       catchError((res: HttpErrorResponse) => {
-        /**
-         * * Unauthenticated
-         * ? Why would the API return status code 500 instead of 401
-         * TODO: refactor this so that it can better handle unauthenticated users and use the refresh token.
-         */
-        console.log('res', res.message)
-        if (res.error.message === 'Unauthenticated.') {
+        if (res.error.statusCode === 401) {
           this._auth.clearJwtToken();
           this._router.navigate(['/login']);
         } else {
