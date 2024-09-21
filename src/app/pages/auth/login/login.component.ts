@@ -7,6 +7,7 @@ import { ThreeOLoaderModule } from '../../../shared/components/three-o-loader/th
 import { ControlMessagesModule } from '../../../shared/components/control-messages/control-messages.module';
 import { ValidationUtil } from '../../../shared/utils/form-fields.validator';
 import { Login } from '../../../shared/models/login';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -16,11 +17,15 @@ import { Login } from '../../../shared/models/login';
   styleUrl: './login.component.css'
 })
 export class LoginComponent {
-  constructor(private _auth: AuthService, private _toastr: ToastrService) { }
+  constructor(
+    private _auth: AuthService, 
+    private _toastr: ToastrService,
+    private _router: Router,
+  ) { }
 
   loginForm = new FormGroup({
-    email: new FormControl('', { validators: [Validators.required, ValidationUtil.emailValidator] }),
-    password: new FormControl('', Validators.required),
+    email: new FormControl('gladwell_n@live.com', { validators: [Validators.required, ValidationUtil.emailValidator] }),
+    password: new FormControl('P@ssword01', Validators.required),
   });
 
   get f(): { [key: string]: AbstractControl } { return this.loginForm.controls; }
@@ -35,12 +40,10 @@ export class LoginComponent {
       password: this.f['password'].value,
     };
 
-    this._auth.login(data).subscribe({
-      error: (e) => {
-        console.log('e', e);
-        this._toastr.error('err', '', { disableTimeOut: true });
-      },
-      complete: () => console.log('complete')
+    this._auth.login(data).subscribe(_ => {
+      // this._router.navigate(['/dashboard']);
+    }, (err: any) => {
+      this._toastr.error(err.error.message, '', { disableTimeOut: true });
     });
   }
 }

@@ -18,12 +18,12 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     NgbModule,
     AppRoutingModule,
     LoadingBarRouterModule,
+    BrowserAnimationsModule,
     ToastrModule.forRoot({
       preventDuplicates: true,
       timeOut: 10000 // 10 Secs
     }),
     HttpClientModule,
-    BrowserAnimationsModule,
   ],
   providers: [
     provideClientHydration(),
