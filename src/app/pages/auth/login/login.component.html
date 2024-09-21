@@ -1,1 +1,35 @@
-<p>login works!</p>
+<div class="auth-container">
+  <div class="vertical-center">
+    <div class="card auth-card">
+      <div class="card-header text-center">
+        Login
+      </div>
+      <div class="card-body">
+        <form (ngSubmit)="onLogin()" [formGroup]="loginForm">
+          <div class="form-group">
+            <label for="email">Email address:</label>
+            <input type="email" class="form-control" id="email" formControlName="email"
+              [ngClass]="{'is-invalid': f['email'].touched && f['email'].invalid}">
+            <control-messages class="invalid-feedback" [control]="f['email']"></control-messages>
+          </div>
+          <div class="form-group">
+            <label for="password">Password:</label>
+            <input type="password" class="form-control" id="password" formControlName="password"
+              [ngClass]="{'is-invalid': f['password'].touched && f['password'].invalid}">
+            <control-messages class="invalid-feedback" [control]="f['password']"></control-messages>
+          </div>
+
+          <div class="d-grid gap-2">
+            <button type="submit" class="btn mt-5" [class]="loginForm.valid ? 'btn-primary' : 'btn-secondary disabled'"
+              [disabled]="!loginForm.valid">
+              <app-three-o-loader [originText]="'Login to your Account!'"></app-three-o-loader>
+            </button>
+          </div>
+        </form>
+        <div class="text-center mt-3">
+          <a routerLink="/auth/register">Do not have an account?</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

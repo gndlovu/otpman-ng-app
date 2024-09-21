@@ -7,7 +7,7 @@ import { GuestComponent } from './guest.component';
   declarations: [GuestComponent],
   imports: [
     CommonModule,
-    ROUTES
-  ]
+    ROUTES,
+  ],
 })
 export class GuestModule { }

@@ -1,1 +1,31 @@
 /* You can add global styles to this file, and also import other style files */
+a {
+  text-decoration: none !important;
+}
+
+.pointer {
+  cursor: pointer;
+}
+
+.auth-container {
+  height: 100vh;
+  background-image: linear-gradient(whitesmoke 50%, grey 50%);
+  overflow: hidden;
+}
+
+.vertical-center {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-45%);
+  margin: 0 auto;
+      margin-top: 0px;
+  min-width: 100% !important;
+  margin-top: -40px;
+  overflow-y: hidden;
+}
+
+.auth-card {
+  max-width: 360px;
+  min-height: 360px !important;
+  margin: auto;
+}
