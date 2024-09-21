@@ -5,7 +5,7 @@
         Login
       </div>
       <div class="card-body">
-        <form (ngSubmit)="onLogin()" [formGroup]="loginForm">
+        <form (ngSubmit)="onLogin(otpModal)" [formGroup]="loginForm">
           <div class="form-group">
             <label for="email">Email address:</label>
             <input type="email" class="form-control" id="email" formControlName="email"
@@ -33,3 +33,25 @@
     </div>
   </div>
 </div>
+
+<ng-template #otpModal let-c="close" let-d="dismiss">
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-primary-title">Welcome back {{user?.name}}</h4>
+  </div>
+  <div class="modal-body centered">
+    <form>
+      <div class="form-group">
+        <label for="otp">Enter your 6 digit OTP here:</label>
+        <input type="text" class="form-control" id="otp" [formControl]="otp" />
+      </div>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <div class="d-grid gap-2 col-6 mx-auto">
+      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Request OTP</button>
+      <button type="button" class="btn btn-primary" (click)="onSubmitOtp()">
+        <app-three-o-loader [originText]="'Submit OTP'"></app-three-o-loader>
+      </button>
+    </div>
+  </div>
+</ng-template>

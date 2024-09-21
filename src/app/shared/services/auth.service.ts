@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
 import { environment } from '../../../environments/environment';
 import { Login } from '../models/login';
-
+import { User } from '../models/user';
 
 @Injectable({
   providedIn: 'root'
@@ -16,10 +16,24 @@ export class AuthService {
   constructor(private _http: HttpClient) { }
 
   login(data: Login): Observable<any> {
-    return this._http.post(`${this.API_BASE_URL}/auth/users/login`, data).pipe(
-      tap(auth => { localStorage.setItem(this.JWT_TOKEN, JSON.stringify(auth)) })
+    return this._http.post<User>(`${this.API_BASE_URL}/auth/users/login`, data);
+  }
+
+  validatOtp(data: { pin: string, userId: number }): Observable<any> {
+    return this._http.post<{accessToken: string}>(`${this.API_BASE_URL}/auth/otp/validate`, data).pipe(
+      tap(auth => {
+        localStorage.setItem(this.JWT_TOKEN, auth.accessToken)
+      })
     );
   }
 
-  clearJwtToken() { }
+  clearJwtToken() {
+    localStorage.removeItem(this.JWT_TOKEN);
+  }
+
+  isAuthenticated(): boolean {
+    const jwt = localStorage.getItem(this.JWT_TOKEN);
+
+    return !!jwt;
+  }
 }
