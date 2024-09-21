@@ -48,7 +48,9 @@
   </div>
   <div class="modal-footer">
     <div class="d-grid gap-2 col-6 mx-auto">
-      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Request OTP</button>
+      <button type="button" class="btn btn-secondary" (click)="onRequestOtp()">
+        <app-three-o-loader [originText]="'Request OTP'"></app-three-o-loader>
+      </button>
       <button type="button" class="btn btn-primary" (click)="onSubmitOtp()">
         <app-three-o-loader [originText]="'Submit OTP'"></app-three-o-loader>
       </button>

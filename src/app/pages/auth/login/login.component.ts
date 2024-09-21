@@ -69,4 +69,13 @@ export class LoginComponent {
       this._toastr.error(err.error.message, '', { disableTimeOut: true });
     });
   }
+
+  onRequestOtp() {
+    this._auth.requestOtp(this.user!.id).subscribe(_ => {
+      this._toastr.success('An OTP has been sent to your email address');
+      this.otp.setValue('');
+    }, (err: any) => {
+      this._toastr.error(err.error.message, '', { disableTimeOut: true });
+    });
+  }
 }
