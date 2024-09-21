@@ -11,13 +11,13 @@ export class TokenInterceptor implements HttpInterceptor {
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
 
-    // if (this._auth.isAuthenticated()) {
-    //   req = req.clone({
-    //     setHeaders: {
-    //       Authorization: `Bearer ${this._auth.jwt?.access_token}`
-    //     }
-    //   });
-    // }
+    if (this._auth.isAuthenticated()) {
+      req = req.clone({
+        setHeaders: {
+          Authorization: `Bearer ${this._auth.getToken()}`
+        }
+      });
+    }
 
     return next.handle(req);
   }

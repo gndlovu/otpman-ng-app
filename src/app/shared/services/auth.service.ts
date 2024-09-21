@@ -36,8 +36,14 @@ export class AuthService {
   }
 
   isAuthenticated(): boolean {
-    const jwt = localStorage.getItem(this.JWT_TOKEN);
+    return !!this.getToken();
+  }
 
-    return !!jwt;
+  getToken() {
+    return localStorage.getItem(this.JWT_TOKEN);
+  }
+
+  profile(): Observable<any> {
+    return this._http.get(`${this.API_BASE_URL}/auth/users/me`);
   }
 }
