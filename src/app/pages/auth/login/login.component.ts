@@ -31,8 +31,8 @@ export class LoginComponent {
   user: User | undefined;
   otpModalRef: NgbModalRef | undefined;
   loginForm = new FormGroup({
-    email: new FormControl('gladwell_n@live.com', { validators: [Validators.required, ValidationUtil.emailValidator] }),
-    password: new FormControl('P@ssword01', Validators.required),
+    email: new FormControl('', { validators: [Validators.required, ValidationUtil.emailValidator] }),
+    password: new FormControl('', Validators.required),
   });
 
   get f(): { [key: string]: AbstractControl } { return this.loginForm.controls; }

@@ -18,6 +18,9 @@ export class ErrorHandlerService {
       case 404:
         errors = ['The requested resouce could not be found. Try again in a few moments.'];
         break;
+      case 409:
+        errors = [result.error.message];
+        break;
       case 422:
         errors = this.handleValidation(result.error.errors);
         break;

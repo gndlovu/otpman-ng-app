@@ -1,0 +1,58 @@
+<div class="auth-container">
+    <div class="vertical-center">
+        <div class="card auth-card">
+            <div class="card-header text-center">
+                Register
+            </div>
+            <div class="card-body">
+                <form (ngSubmit)="onSignup()" [formGroup]="signupForm">
+                    <div class="form-group">
+                        <label for="firstName">First Name:</label>
+                        <input type="text" class="form-control" id="firstName" formControlName="firstName"
+                            [ngClass]="{'is-invalid': f['firstName'].touched && f['firstName'].invalid}">
+                        <control-messages class="invalid-feedback" [control]="f['firstName']"></control-messages>
+                    </div>
+                    <div class="form-group">
+                        <label for="lastName">Last Name:</label>
+                        <input type="text" class="form-control" id="lastName" formControlName="lastName"
+                            [ngClass]="{'is-invalid': f['lastName'].touched && f['lastName'].invalid}">
+                        <control-messages class="invalid-feedback" [control]="f['lastName']"></control-messages>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email address:</label>
+                        <input type="email" class="form-control" id="email" formControlName="email"
+                            [ngClass]="{'is-invalid': f['email'].touched && f['email'].invalid}">
+                        <control-messages class="invalid-feedback" [control]="f['email']"></control-messages>
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Password:</label>
+                        <input type="password" class="form-control" id="password" formControlName="password"
+                            [ngClass]="{'is-invalid': f['password'].touched && f['password'].invalid}">
+                        <control-messages class="invalid-feedback" [control]="f['password']"></control-messages>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="passwordConfirmation">Repeat Password:</label>
+                        <input type="password" class="form-control" id="passwordConfirmation"
+                            formControlName="passwordConfirmation"
+                            [ngClass]="{'is-invalid': f['passwordConfirmation'].touched && f['passwordConfirmation'].invalid}">
+                        <control-messages class="invalid-feedback" [control]="f['passwordConfirmation']">
+                        </control-messages>
+                    </div>
+
+                    <div class="d-grid gap-2">
+                        <button type="submit" class="btn mt-5"
+                            [class]="signupForm.valid ? 'btn-primary' : 'btn-secondary disabled'"
+                            [disabled]="!signupForm.valid">
+                            <app-three-o-loader
+                                [data]="{originText: 'Create Account!', id: 'account-signup'}"></app-three-o-loader>
+                        </button>
+                    </div>
+                </form>
+                <div class="text-center mt-3">
+                    <a href="/login">Already have an account?</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

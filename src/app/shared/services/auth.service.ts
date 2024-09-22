@@ -5,6 +5,7 @@ import { tap } from 'rxjs/operators';
 import { environment } from '../../../environments/environment';
 import { Login } from '../models/login';
 import { User } from '../models/user';
+import { Signup } from '../models/signup';
 
 @Injectable({
   providedIn: 'root'
@@ -14,6 +15,10 @@ export class AuthService {
   private readonly API_BASE_URL = environment.API.BASE_URL;
 
   constructor(private _http: HttpClient) { }
+
+  signup(data: Signup): Observable<User> {
+    return this._http.post<User>(`${this.API_BASE_URL}/account/signup`, data);
+  }
 
   login(data: Login): Observable<User> {
     return this._http.post<User>(`${this.API_BASE_URL}/auth/login`, data);
