@@ -15,13 +15,13 @@ import { LoaderService } from '../../services/loader.service';
       <span></span>
     </div>
     <ng-template #showText>
-        {{ originText }}
+      {{ data.originText }}
     </ng-template>
   `,
   styleUrls: ['./three-o-loader.component.css'],
 })
 export class ThreeOLoaderComponent implements OnInit, OnDestroy {
-  @Input() originText!: string;
+  @Input() data!: { id: string; originText: string; };
 
   _loaderState = new Subscription();
   showLoader = false;
@@ -30,7 +30,7 @@ export class ThreeOLoaderComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this._loaderState = this._loader.state.subscribe((state: LoaderState) => {
-      this.showLoader = state.show;
+      this.showLoader = state.show && state.loaderId.includes(this.data.id);
     });
   }
 

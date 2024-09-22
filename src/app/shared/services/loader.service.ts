@@ -6,11 +6,11 @@ import { LoaderState } from '../models/loader';
     providedIn: 'root',
 })
 export class LoaderService {
-  state = new BehaviorSubject<LoaderState>({ show: false });
+  state = new BehaviorSubject<LoaderState>({ show: false, loaderId: '' });
 
-  show(method: string) {
+  show(method: string, loaderId: string) {
     if (method.toLowerCase() !== 'get') {
-      this.toogleState(true);
+      this.toogleState(true, loaderId);
     }
   }
 
@@ -18,7 +18,7 @@ export class LoaderService {
     this.toogleState(false);
   }
 
-  private toogleState(show: boolean) {
-    this.state.next({ show } as LoaderState);
+  private toogleState(show: boolean, loaderId?: string) {
+    this.state.next({ show, loaderId } as LoaderState);
   }
 }

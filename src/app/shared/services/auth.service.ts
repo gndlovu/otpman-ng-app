@@ -16,11 +16,11 @@ export class AuthService {
   constructor(private _http: HttpClient) { }
 
   login(data: Login): Observable<User> {
-    return this._http.post<User>(`${this.API_BASE_URL}/auth/users/login`, data);
+    return this._http.post<User>(`${this.API_BASE_URL}/auth/login`, data);
   }
 
   validatOtp(data: { pin: string, userId: number }): Observable<{accessToken: string}> {
-    return this._http.post<{accessToken: string}>(`${this.API_BASE_URL}/auth/otp/validate`, data).pipe(
+    return this._http.post<{accessToken: string}>(`${this.API_BASE_URL}/auth/otp/verify`, data).pipe(
       tap(auth => {
         localStorage.setItem(this.JWT_TOKEN, auth.accessToken)
       })
@@ -44,6 +44,6 @@ export class AuthService {
   }
 
   profile(): Observable<any> {
-    return this._http.get(`${this.API_BASE_URL}/auth/users/me`);
+    return this._http.get(`${this.API_BASE_URL}/users/profile`);
   }
 }

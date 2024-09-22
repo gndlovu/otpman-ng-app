@@ -22,7 +22,7 @@
           <div class="d-grid gap-2">
             <button type="submit" class="btn mt-5" [class]="loginForm.valid ? 'btn-primary' : 'btn-secondary disabled'"
               [disabled]="!loginForm.valid">
-              <app-three-o-loader [originText]="'Login to your Account!'"></app-three-o-loader>
+              <app-three-o-loader [data]="{originText: 'Login to your Account!', id: 'auth-login'}"></app-three-o-loader>
             </button>
           </div>
         </form>
@@ -49,10 +49,10 @@
   <div class="modal-footer">
     <div class="d-grid gap-2 col-6 mx-auto">
       <button type="button" class="btn btn-secondary" (click)="onRequestOtp()">
-        <app-three-o-loader [originText]="'Request OTP'"></app-three-o-loader>
+        <app-three-o-loader [data]="{originText: 'Request OTP', id: 'auth-otp-request'}"></app-three-o-loader>
       </button>
       <button type="button" class="btn btn-primary" (click)="onSubmitOtp()">
-        <app-three-o-loader [originText]="'Submit OTP'"></app-three-o-loader>
+        <app-three-o-loader [data]="{originText: 'Submit OTP', id: 'auth-otp-verify'}"></app-three-o-loader>
       </button>
     </div>
   </div>
